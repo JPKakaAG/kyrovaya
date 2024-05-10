@@ -20,11 +20,12 @@
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="dg1" IsReadOnly="True" AutoGenerateColumns="False" Grid.Row="1" Grid.ColumnSpan="3" Margin="65,78,65,0" Grid.RowSpan="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="10*" Header="IDКомплектующего" Binding="{Binding IdкомплектующегоNavigation.IDКомплектующего }"/>
+                <DataGridTextColumn Width="10*" Header="IDКомплектующего" Binding="{Binding Idкомплектующего}"/>
                 <DataGridTextColumn Width="14*" Header="НазваниеКомплектующего" Binding="{Binding НазваниеКомплектующего}"/>
-                <DataGridTextColumn Width="13*" Header="IDПроизводителя" Binding="{Binding IdпроизводителяNavigation.IDПроизводителя}"/>
-                <DataGridTextColumn Width="16*" Header="IDТипаКомплектующего" Binding="{Binding IdтипаКомплектующегоNavigation.IDТИпаКомплектующего}"/>
-                <DataGridTextColumn Width="7*" Header="IDСклада" Binding="{Binding IdскладаNavigation.IDСклада}"/>
+                <DataGridTextColumn Width="9*" Header="IDПроизводителя" Binding="{Binding IdпроизводителяNavigation.Idпроизводителя}"/>
+                <DataGridTextColumn Width="13*" Header="IDТипаКомплектующего" Binding="{Binding IdтипаКомплектующегоNavigation.IdтипаКомплектующего}"/>
+                <DataGridTextColumn Width="4*" Header="Цена" Binding="{Binding Цена}"/>
+                <DataGridTextColumn Width="7*" Header="IDСклада" Binding="{Binding IdскладаNavigation.Idсклада}"/>
                 <DataGridTextColumn Width="10*" Header="КолвоНаСкладе" Binding="{Binding КолвоНаСкладе}"/>
             </DataGrid.Columns>
         </DataGrid>
@@ -35,5 +36,8 @@
             <MenuItem Header="О программе" Click="btnInfo_Click"></MenuItem>
             <MenuItem Header="Выход" Click="btnExit_Click"></MenuItem>
         </Menu>
+        <Button x:Name="btnProizv" Click="btnProizv_Click" Content="IDПроизводителя" HorizontalAlignment="Left" Margin="71,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="107" Height="25" Grid.Column="1" Grid.RowSpan="2"/>
+        <Button x:Name="btnType" Click="btnType_CLick" Grid.Column="1" Content="IDТипаКомплектующего" HorizontalAlignment="Left" Margin="178,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="155" Height="25" Grid.RowSpan="2"/>
+        <Button x:Name="btnSklad" Click="btnSklad_Click" Grid.Column="2" Content="IDСклада" HorizontalAlignment="Left" Margin="16,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="83" Height="25" Grid.RowSpan="2"/>
     </Grid>
 </Window>

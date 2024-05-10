@@ -28,11 +28,11 @@ namespace kyrovaya
         private void AddEditKompl1_Loaded(object sender, RoutedEventArgs e)
         {
             cbIDproiz.ItemsSource = _db.Производителиs.ToList();
-            cbIDproiz.DisplayMemberPath = "IDПроизводителя";
+            cbIDproiz.DisplayMemberPath = "Idпроизводителя";
             cbIDsklada.ItemsSource = _db.Складs.ToList();
-            cbIDsklada.DisplayMemberPath = "IDСклада";
+            cbIDsklada.DisplayMemberPath = "Idсклада";
             cbTypeKompl.ItemsSource = _db.ТипыКомплектующегоs.ToList();
-            cbTypeKompl.DisplayMemberPath = "IDТипаКомплектующего";
+            cbTypeKompl.DisplayMemberPath = "IdтипаКомплектующего";
             if (Data.Комплектующие == null)
             {
                 AddEditKompl1.Title = "Добавление записи";

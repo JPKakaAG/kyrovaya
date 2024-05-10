@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Class1;
+using kyrovaya.xamls;
 
 namespace kyrovaya
 {
@@ -82,7 +83,53 @@ namespace kyrovaya
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result;
+            result = MessageBox.Show("Удалить запись?", "Удаление записи",
+                MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Комплектующие row = (Комплектующие)dg1.SelectedItem;
+                    if (row != null)
+                    {
+                        using (KyrsovayaContext _db = new KyrsovayaContext())
+                        {
+                            _db.Комплектующиеs.Remove(row);
+                            _db.SaveChanges();
+                        }
+                        LoadDBInDataGrid();
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка удаления");
+                }
+            }
+            else dg1.Focus();
+        }
+        private void btnProizv_Click(object sender, RoutedEventArgs e)
+        {
+            Proizvod f = new Proizvod();
+            f.Owner = this;
+            f.ShowDialog();
+            LoadDBInDataGrid();
+        }
 
+        private void btnType_CLick(object sender, RoutedEventArgs e)
+        {
+            xamls.Type f = new xamls.Type();
+            f.Owner = this;
+            f.ShowDialog();
+            LoadDBInDataGrid();
+        }
+
+        private void btnSklad_Click(object sender, RoutedEventArgs e)
+        {
+            Sklad f = new Sklad();  
+            f.Owner = this;
+            f.ShowDialog();
+            LoadDBInDataGrid();
         }
     }
 }
