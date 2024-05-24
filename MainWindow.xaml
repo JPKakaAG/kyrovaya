@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kyrovaya"
         mc:Ignorable="d"
-        Title="MainWindow" Loaded="Window_Loaded" ResizeMode="NoResize" Height="502" Width="948">
+        Title="Компьютерные комплектующие" Loaded="Window_Loaded" ResizeMode="NoResize" Height="502" Width="948" Icon="/132706_pinion_control_application_preferences_generator_icon.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"/>

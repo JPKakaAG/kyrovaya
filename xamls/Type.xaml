@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kyrovaya.xamls"
         mc:Ignorable="d"
-        Title="ТипыКомплектующего" Loaded="Type1_Loaded" Height="450" Width="800">
+        Title="ТипыКомплектующего" Loaded="Type1_Loaded" Height="450" Width="800" Icon="/132706_pinion_control_application_preferences_generator_icon.png">
     <Grid>
         <DataGrid x:Name="dg1" IsReadOnly="True" AutoGenerateColumns="False" Margin="10,0,10,78">
             <DataGrid.Columns>

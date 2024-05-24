@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kyrovaya"
         mc:Ignorable="d"
-        Title="MainWindow" Loaded="AddEditKompl1_Loaded" ResizeMode="NoResize" Height="502" Width="396">
+        Title="MainWindow" Loaded="AddEditKompl1_Loaded" ResizeMode="NoResize" Height="502" Width="396" Icon="/132706_pinion_control_application_preferences_generator_icon.png">
     <Grid>
         <TextBox x:Name="tbNameKompl"  Text="{Binding Path=НазваниеКомплектующего}" HorizontalAlignment="Center" Margin="0,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Название комплектующего" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
