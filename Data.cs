@@ -15,6 +15,10 @@ namespace Class1
         public static Производители? Производители;
         public static Склад? Склад;
         public static Комплектующие? Комплектующие;
-        public static ТипыКомплектующего? ТипыКомплектующего; 
+        public static ТипыКомплектующего? ТипыКомплектующего;
+        public static bool Login = false;
+        public static string UserSurname;
+        public static string UserPatronymic;
+        public static string Right;
     }
 }

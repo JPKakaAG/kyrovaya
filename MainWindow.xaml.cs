@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Class1;
 using kyrovaya.xamls;
+using System.Reflection;
 
 namespace kyrovaya
 {
@@ -23,6 +24,18 @@ namespace kyrovaya
         public MainWindow()
         {
             InitializeComponent();
+        }
+        private void WindowInitialized(object sender, EventArgs e)
+        {
+            Autorize f = new Autorize();
+            f.ShowDialog();
+            menu.IsEnabled = true;
+            if (Data.Login == false) Close();
+            if (Data.Right == "Администратор") ;
+            else
+            {
+                menu.IsEnabled = false;
+            }
         }
         void LoadDBInDataGrid()
         {

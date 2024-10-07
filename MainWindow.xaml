@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kyrovaya"
         mc:Ignorable="d"
-        Title="Компьютерные комплектующие" Loaded="Window_Loaded" ResizeMode="NoResize" Height="502" Width="948" Icon="/132706_pinion_control_application_preferences_generator_icon.png">
+        Title="Компьютерные комплектующие" Loaded="Window_Loaded" Initialized="WindowInitialized" ResizeMode="NoResize" Height="502" Width="948">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="65*"/>
@@ -29,15 +29,18 @@
                 <DataGridTextColumn Width="10*" Header="КолвоНаСкладе" Binding="{Binding КолвоНаСкладе}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Menu Grid.ColumnSpan="3" Margin="0,0,0,44">
+        <Menu x:Name="menu" Grid.ColumnSpan="3" Margin="0,0,0,44">
             <MenuItem Header="Добавить" Click="btnAdd_Click"></MenuItem>
             <MenuItem Header="Изменить" Click="btnEdit_Click"></MenuItem>
             <MenuItem Header="Удалить" Click="btnDelete_Click"></MenuItem>
             <MenuItem Header="О программе" Click="btnInfo_Click"></MenuItem>
             <MenuItem Header="Выход" Click="btnExit_Click"></MenuItem>
+            <Separator/>
+            <MenuItem Header="Информация">
+                <MenuItem Header="Производители" Click="btnProizv_Click"/>
+                <MenuItem Header="Тип комплектующего" Click="btnType_CLick"/>
+                <MenuItem Header="Склады" Click="btnSklad_Click"/>
+            </MenuItem>
         </Menu>
-        <Button x:Name="btnProizv" Click="btnProizv_Click" Content="IDПроизводителя" HorizontalAlignment="Left" Margin="71,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="107" Height="25" Grid.Column="1" Grid.RowSpan="2"/>
-        <Button x:Name="btnType" Click="btnType_CLick" Grid.Column="1" Content="IDТипаКомплектующего" HorizontalAlignment="Left" Margin="178,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="155" Height="25" Grid.RowSpan="2"/>
-        <Button x:Name="btnSklad" Click="btnSklad_Click" Grid.Column="2" Content="IDСклада" HorizontalAlignment="Left" Margin="16,78,0,0" Grid.Row="1" VerticalAlignment="Top" Width="83" Height="25" Grid.RowSpan="2"/>
     </Grid>
 </Window>
