@@ -8,9 +8,9 @@
     Title="Авторизация" ResizeMode="NoResize" Height="250" Width="300" Activated="WindowActivated">
     <StackPanel x:Name="stpanel">
         <Label>Пользователь</Label>
-        <TextBox x:Name="tbLogin"></TextBox>
+        <TextBox x:Name="tbLogin" Text="Client"></TextBox>
         <Label>Пароль</Label>
-        <PasswordBox x:Name="tbPas" PasswordChar="*"></PasswordBox>
+        <PasswordBox x:Name="tbPas" PasswordChar="*" Password="1234567890"></PasswordBox>
         <Grid x:Name="grid" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>

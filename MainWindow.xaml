@@ -18,6 +18,7 @@
             <ColumnDefinition Width="78*"/>
             <ColumnDefinition Width="61*"/>
         </Grid.ColumnDefinitions>
+        <Button x:Name="btnOrder" Content="Заказать" Click="btnOrder_Click" Margin="50,17,50,16" Grid.Column="1" Grid.Row="1" />
         <DataGrid x:Name="dg1" IsReadOnly="True" AutoGenerateColumns="False" Grid.Row="1" Grid.ColumnSpan="3" Margin="65,78,65,0" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="10*" Header="IDКомплектующего" Binding="{Binding Idкомплектующего}"/>
@@ -30,6 +31,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Menu x:Name="menu" Grid.ColumnSpan="3" Margin="0,0,0,44">
+            <MenuItem Header="Просмотр заказов" Click="ViewOrders_Click"/>
             <MenuItem Header="Добавить" Click="btnAdd_Click"></MenuItem>
             <MenuItem Header="Изменить" Click="btnEdit_Click"></MenuItem>
             <MenuItem Header="Удалить" Click="btnDelete_Click"></MenuItem>
@@ -42,5 +44,6 @@
                 <MenuItem Header="Склады" Click="btnSklad_Click"/>
             </MenuItem>
         </Menu>
+        <DataGrid x:Name="ordersDataGrid" Visibility="Hidden" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="3" Margin="65,78,65,0" Grid.RowSpan="2"/>
     </Grid>
 </Window>

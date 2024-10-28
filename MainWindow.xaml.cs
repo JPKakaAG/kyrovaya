@@ -31,9 +31,14 @@ namespace kyrovaya
             f.ShowDialog();
             menu.IsEnabled = true;
             if (Data.Login == false) Close();
-            if (Data.Right == "Администратор") ;
+            if (Data.Right == "Администратор")
+                if (Data.Right == "Менеджер")
+                {
+                    menu.IsEnabled = true;
+                }   
             else
             {
+
                 menu.IsEnabled = false;
             }
         }
@@ -121,6 +126,62 @@ namespace kyrovaya
             }
             else dg1.Focus();
         }
+        private void LoadOrders()
+        {
+            using (KyrsovayaContext _db = new KyrsovayaContext())
+            {
+                int SelectedIndex = ordersDataGrid.SelectedIndex;
+                _db.Заказыs.Load();
+                ordersDataGrid.ItemsSource = _db.Заказыs.ToList();
+                if (SelectedIndex != -1)
+                {
+                    if (SelectedIndex == ordersDataGrid.Items.Count) SelectedIndex--;
+                    ordersDataGrid.SelectedIndex = SelectedIndex;
+                    ordersDataGrid.ScrollIntoView(ordersDataGrid.SelectedItem);
+                }
+                ordersDataGrid.Focus();
+            }
+        }
+        private void ViewOrders_Click(object sender, RoutedEventArgs e)
+        {
+            if (Data.Right == "Менеджер")
+            {
+                if (ordersDataGrid.Visibility == Visibility.Visible)
+                {
+                    ordersDataGrid.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    ordersDataGrid.Visibility = Visibility.Visible;
+                    LoadOrders();
+                }
+            }
+            else
+            {
+                MessageBox.Show("У вас нет прав для просмотра заказов.");
+            }
+        }
+
+        private void btnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            // Проверяем, авторизован ли клиент
+            if (Data.Right != "Клиент")
+            {
+                MessageBox.Show("Пожалуйста, войдите как клиент, чтобы сделать заказ.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Создаем новую форму для заказа
+            OrderForm orderForm = new OrderForm();
+            orderForm.Owner = this;
+
+            // Открываем форму для заказа
+            if (orderForm.ShowDialog() == true)
+            {
+                LoadDBInDataGrid(); // Обновляем данные
+            }
+        }
+
         private void btnProizv_Click(object sender, RoutedEventArgs e)
         {
             Proizvod f = new Proizvod();

@@ -25,6 +25,8 @@ public partial class Комплектующие
 
     public virtual ТипыКомплектующего? IdтипаКомплектующегоNavigation { get; set; }
 
+    public virtual ICollection<Заказы> Заказыs { get; set; } = new List<Заказы>();
+
     public virtual ICollection<Отгрузки> Отгрузкиs { get; set; } = new List<Отгрузки>();
 
     public virtual ICollection<Приемка> Приемкаs { get; set; } = new List<Приемка>();

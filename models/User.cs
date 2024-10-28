@@ -18,5 +18,8 @@ public partial class User
     public string Password { get; set; } = null!;
 
     public string Login { get; set; } = null!;
+
     public virtual Role IdroleNavigation { get; set; } = null!;
+
+    public virtual ICollection<Заказы> Заказыs { get; set; } = new List<Заказы>();
 }

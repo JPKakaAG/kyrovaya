@@ -19,6 +19,8 @@ public partial class KyrsovayaContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<Заказы> Заказыs { get; set; }
+
     public virtual DbSet<Комплектующие> Комплектующиеs { get; set; }
 
     public virtual DbSet<Отгрузки> Отгрузкиs { get; set; }
@@ -39,7 +41,7 @@ public partial class KyrsovayaContext : DbContext
     {
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Idrole).HasName("PK__Roles__8A8B0B9AF7A8FC0A");
+            entity.HasKey(e => e.Idrole).HasName("PK__Roles__8A8B0B9AD67706F5");
 
             entity.Property(e => e.Idrole).ValueGeneratedNever();
             entity.Property(e => e.Role1)
@@ -49,7 +51,7 @@ public partial class KyrsovayaContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Iduser).HasName("PK__Users__778B89210ADED62F");
+            entity.HasKey(e => e.Iduser).HasName("PK__Users__778B89210A07A801");
 
             entity.Property(e => e.Iduser).ValueGeneratedNever();
             entity.Property(e => e.Login)
@@ -67,11 +69,41 @@ public partial class KyrsovayaContext : DbContext
             entity.Property(e => e.Surname)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+
+            entity.HasOne(d => d.IdroleNavigation).WithMany(p => p.Users)
+                .HasForeignKey(d => d.Idrole)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Users_Roles");
+        });
+
+        modelBuilder.Entity<Заказы>(entity =>
+        {
+            entity.HasKey(e => e.Idзаказа).HasName("PK__Заказы__EC34FC456BB31667");
+
+            entity.ToTable("Заказы");
+
+            entity.Property(e => e.Idзаказа).HasColumnName("IDЗаказа");
+            entity.Property(e => e.Idкомплектующего).HasColumnName("IDКомплектующего");
+            entity.Property(e => e.Idсклада).HasColumnName("IDСклада");
+            entity.Property(e => e.ДатаЗаказа).HasColumnType("datetime");
+
+            entity.HasOne(d => d.IduserNavigation).WithMany(p => p.Заказыs)
+                .HasForeignKey(d => d.Iduser)
+                .HasConstraintName("FK__Заказы__Iduser__17F790F9");
+
+            entity.HasOne(d => d.IdкомплектующегоNavigation).WithMany(p => p.Заказыs)
+                .HasForeignKey(d => d.Idкомплектующего)
+                .HasConstraintName("FK__Заказы__IDКомпле__160F4887");
+
+            entity.HasOne(d => d.IdскладаNavigation).WithMany(p => p.Заказыs)
+                .HasForeignKey(d => d.Idсклада)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Заказы__IDСклада__17036CC0");
         });
 
         modelBuilder.Entity<Комплектующие>(entity =>
         {
-            entity.HasKey(e => e.Idкомплектующего).HasName("PK__Комплект__A8C5759FDA84DE37");
+            entity.HasKey(e => e.Idкомплектующего).HasName("PK__Комплект__A8C5759FA59ABCD2");
 
             entity.ToTable("Комплектующие");
 
@@ -87,22 +119,22 @@ public partial class KyrsovayaContext : DbContext
             entity.HasOne(d => d.IdпроизводителяNavigation).WithMany(p => p.Комплектующиеs)
                 .HasForeignKey(d => d.Idпроизводителя)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Комплекту__IDПро__2E1BDC42");
+                .HasConstraintName("FK__Комплекту__IDПро__07C12930");
 
             entity.HasOne(d => d.IdскладаNavigation).WithMany(p => p.Комплектующиеs)
                 .HasForeignKey(d => d.Idсклада)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Комплекту__IDСкл__2F10007B");
+                .HasConstraintName("FK__Комплекту__IDСкл__08B54D69");
 
             entity.HasOne(d => d.IdтипаКомплектующегоNavigation).WithMany(p => p.Комплектующиеs)
                 .HasForeignKey(d => d.IdтипаКомплектующего)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Комплекту__IDТИп__300424B4");
+                .HasConstraintName("FK__Комплекту__IDТИп__09A971A2");
         });
 
         modelBuilder.Entity<Отгрузки>(entity =>
         {
-            entity.HasKey(e => e.Idотгрузки).HasName("PK__Отгрузки__E00E5E60E660E4BF");
+            entity.HasKey(e => e.Idотгрузки).HasName("PK__Отгрузки__E00E5E609018C593");
 
             entity.ToTable("Отгрузки");
 
@@ -112,16 +144,16 @@ public partial class KyrsovayaContext : DbContext
 
             entity.HasOne(d => d.IdкомплектующегоNavigation).WithMany(p => p.Отгрузкиs)
                 .HasForeignKey(d => d.Idкомплектующего)
-                .HasConstraintName("FK__Отгрузки__IDКомп__30F848ED");
+                .HasConstraintName("FK__Отгрузки__IDКомп__0A9D95DB");
 
             entity.HasOne(d => d.IdскладаNavigation).WithMany(p => p.Отгрузкиs)
                 .HasForeignKey(d => d.Idсклада)
-                .HasConstraintName("FK__Отгрузки__IDСкла__31EC6D26");
+                .HasConstraintName("FK__Отгрузки__IDСкла__0B91BA14");
         });
 
         modelBuilder.Entity<Приемка>(entity =>
         {
-            entity.HasKey(e => e.Idприемки).HasName("PK__Приемка__4484E328781B6713");
+            entity.HasKey(e => e.Idприемки).HasName("PK__Приемка__4484E328C2376F99");
 
             entity.ToTable("Приемка");
 
@@ -131,16 +163,16 @@ public partial class KyrsovayaContext : DbContext
 
             entity.HasOne(d => d.IdкомплектующегоNavigation).WithMany(p => p.Приемкаs)
                 .HasForeignKey(d => d.Idкомплектующего)
-                .HasConstraintName("FK__Приемка__IDКомпл__32E0915F");
+                .HasConstraintName("FK__Приемка__IDКомпл__0C85DE4D");
 
             entity.HasOne(d => d.IdскладаNavigation).WithMany(p => p.Приемкаs)
                 .HasForeignKey(d => d.Idсклада)
-                .HasConstraintName("FK__Приемка__IDСклад__33D4B598");
+                .HasConstraintName("FK__Приемка__IDСклад__0D7A0286");
         });
 
         modelBuilder.Entity<Производители>(entity =>
         {
-            entity.HasKey(e => e.Idпроизводителя).HasName("PK__Производ__B421E25F31FD2024");
+            entity.HasKey(e => e.Idпроизводителя).HasName("PK__Производ__B421E25FA345C66B");
 
             entity.ToTable("Производители");
 
@@ -152,7 +184,7 @@ public partial class KyrsovayaContext : DbContext
 
         modelBuilder.Entity<Склад>(entity =>
         {
-            entity.HasKey(e => e.Idсклада).HasName("PK__Склад__E998C2AEC28A10A7");
+            entity.HasKey(e => e.Idсклада).HasName("PK__Склад__E998C2AE21E09B06");
 
             entity.ToTable("Склад");
 
@@ -164,7 +196,7 @@ public partial class KyrsovayaContext : DbContext
 
         modelBuilder.Entity<ТипыКомплектующего>(entity =>
         {
-            entity.HasKey(e => e.IdтипаКомплектующего).HasName("PK__ТипыКомп__00FCE7F4470B9DA4");
+            entity.HasKey(e => e.IdтипаКомплектующего).HasName("PK__ТипыКомп__00FCE7F4D99CC08E");
 
             entity.ToTable("ТипыКомплектующего");
 

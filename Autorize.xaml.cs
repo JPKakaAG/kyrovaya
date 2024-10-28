@@ -23,6 +23,7 @@ namespace kyrovaya
     /// </summary>
     public partial class Autorize : Window
     {
+        public int CurrentUserId { get; private set; }
         DispatcherTimer _timer;
         int _countLogin = 1;
         public Autorize()
@@ -127,11 +128,13 @@ namespace kyrovaya
             {
                 var user = _db.Users.Where(user => user.Login == tbLogin.Text &&
                 user.Password == tbPas.Password);
+
                 if (user.Count() == 1 && Captcha.Text == tbCaptcha.Text)
                 {
                     Data.Login = true;
                     Data.UserSurname = user.First().Surname;
                     Data.UserPatronymic = user.First().Patronymic;
+                    Data.CurrentUserId = user.First().Iduser;  // Сохраните ID текущего пользователя
                     _db.Roles.Load();
                     Data.Right = user.First().IdroleNavigation.Role1;
                     Close();
