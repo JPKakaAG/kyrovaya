@@ -23,10 +23,10 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="10*" Header="IDКомплектующего" Binding="{Binding Idкомплектующего}"/>
                 <DataGridTextColumn Width="14*" Header="НазваниеКомплектующего" Binding="{Binding НазваниеКомплектующего}"/>
-                <DataGridTextColumn Width="9*" Header="IDПроизводителя" Binding="{Binding IdпроизводителяNavigation.Idпроизводителя}"/>
-                <DataGridTextColumn Width="13*" Header="IDТипаКомплектующего" Binding="{Binding IdтипаКомплектующегоNavigation.IdтипаКомплектующего}"/>
+                <DataGridTextColumn Width="9*" Header="IDПроизводителя" Binding="{Binding IdпроизводителяNavigation.НазваниеПроизводителя}"/>
+                <DataGridTextColumn Width="13*" Header="IDТипаКомплектующего" Binding="{Binding IdтипаКомплектующегоNavigation.НазваниеТипаКомплектующего}"/>
                 <DataGridTextColumn Width="4*" Header="Цена" Binding="{Binding Цена}"/>
-                <DataGridTextColumn Width="7*" Header="IDСклада" Binding="{Binding IdскладаNavigation.Idсклада}"/>
+                <DataGridTextColumn Width="7*" Header="IDСклада" Binding="{Binding IdскладаNavigation.Location}"/>
                 <DataGridTextColumn Width="10*" Header="КолвоНаСкладе" Binding="{Binding КолвоНаСкладе}"/>
             </DataGrid.Columns>
         </DataGrid>
