@@ -22,4 +22,5 @@ public partial class Заказы
     public virtual Комплектующие IdкомплектующегоNavigation { get; set; } = null!;
 
     public virtual Склад IdскладаNavigation { get; set; } = null!;
+
 }

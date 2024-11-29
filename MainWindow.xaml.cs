@@ -130,15 +130,35 @@ namespace kyrovaya
         {
             using (KyrsovayaContext _db = new KyrsovayaContext())
             {
-                int SelectedIndex = ordersDataGrid.SelectedIndex;
-                _db.Заказыs.Load();
-                ordersDataGrid.ItemsSource = _db.Заказыs.ToList();
-                if (SelectedIndex != -1)
+                int selectedIndex = ordersDataGrid.SelectedIndex;
+
+                // Загружаем заказы с данными о комплектующих и складах
+                var orders = _db.Заказыs
+                    .Include(o => o.IdкомплектующегоNavigation) // Используем навигационное свойство
+                    .Include(o => o.IdскладаNavigation) // Используем навигационное свойство
+                    .ToList();
+
+                // Формируем новый список для отображения
+                var orderDisplayList = orders.Select(o => new
                 {
-                    if (SelectedIndex == ordersDataGrid.Items.Count) SelectedIndex--;
-                    ordersDataGrid.SelectedIndex = SelectedIndex;
+                    o.Idзаказа, // Идентификатор заказа
+                    ComponentName = o.IdкомплектующегоNavigation?.НазваниеКомплектующего ?? "Неизвестно", // Название комплектующего
+                    StockName = o.IdскладаNavigation?.Location ?? "Неизвестно", // Название склада
+                    o.Количество, // Количество
+                    o.ДатаЗаказа // Дата заказа
+                }).ToList();
+
+                // Привязываем новый список к DataGrid
+                ordersDataGrid.ItemsSource = orderDisplayList;
+
+                // Восстанавливаем индекс выбора
+                if (selectedIndex != -1)
+                {
+                    if (selectedIndex >= ordersDataGrid.Items.Count) selectedIndex--;
+                    ordersDataGrid.SelectedIndex = selectedIndex;
                     ordersDataGrid.ScrollIntoView(ordersDataGrid.SelectedItem);
                 }
+
                 ordersDataGrid.Focus();
             }
         }
